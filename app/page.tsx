@@ -1,9 +1,34 @@
+"use client"
+
 import Link from "next/link"
+import { Select, TextInput, createStyles } from "@mantine/core"
 
 import { siteConfig } from "@/config/site"
 import { buttonVariants } from "@/components/ui/button"
 
+const useStyles = createStyles((theme) => ({
+  root: {
+    position: "relative",
+  },
+
+  input: {
+    height: "auto",
+    paddingTop: 18,
+  },
+
+  label: {
+    position: "absolute",
+    pointerEvents: "none",
+    fontSize: theme.fontSizes.xs,
+    paddingLeft: theme.spacing.sm,
+    paddingTop: theme.spacing.sm,
+    zIndex: 1,
+  },
+}))
+
 export default function IndexPage() {
+  const { classes } = useStyles()
+
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
       <div className="flex max-w-[980px] flex-col items-start gap-2">
@@ -15,6 +40,13 @@ export default function IndexPage() {
           Accessible and customizable components that you can copy and paste
           into your apps. Free. Open Source. And Next.js 13 Ready.
         </p>
+        <Select
+          style={{ marginTop: 20, zIndex: 2 }}
+          data={["React", "Angular", "Svelte", "Vue"]}
+          placeholder="Pick one"
+          label="Your favorite library/framework"
+          classNames={classes}
+        />
       </div>
       <div className="flex gap-4">
         <Link
